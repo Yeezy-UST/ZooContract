@@ -667,7 +667,6 @@ pub fn mint<S: Storage, A: Api, Q: Querier>(
     let snip20_address: HumanAddr = load(&deps.storage, SNIP20_ADDRESS_KEY)?;
 
 
-
     // Checks how many tokens are left
     let mut count: u16 = load(&deps.storage, COUNT_KEY)?;
 
@@ -676,8 +675,6 @@ pub fn mint<S: Storage, A: Api, Q: Querier>(
             "All tokens have been minted",
         ));
     }
-
-
 
 
     //Whitelist management

@@ -53,7 +53,7 @@ use secret_toolkit::snip20::handle::{register_receive_msg,transfer_msg};
 
 
 /// Mint cost
-pub const MINT_COST: u128 = 10000000; //WRITE IN LOWEST DENOMINATION OF YOUR PREFERRED SNIP
+pub const MINT_COST: u128 = 25000000; //WRITE IN LOWEST DENOMINATION OF YOUR PREFERRED SNIP
 
 
 ////////////////////////////////////// Init ///////////////////////////////////////
@@ -755,15 +755,17 @@ pub fn mint<S: Storage, A: Api, Q: Querier>(
 
 
 
+    // Some(token_data.<INSERT_PRE_LOAD_COMPONENT_NAME>)
+
     let public_metadata = Some(Metadata {
         token_uri: None,
         extension: Some(Extension {
-            image: None,
+            image: Some(token_data.img_url.clone()),
             image_data: None,
             external_url: None,
             description: None,
             name: None,
-            attributes: None,
+            attributes: token_data.attributes.clone(),
             background_color: None,
             animation_url: None,
             youtube_url: None,
@@ -775,12 +777,12 @@ pub fn mint<S: Storage, A: Api, Q: Querier>(
     let private_metadata = Some(Metadata {
         token_uri: None,
         extension: Some(Extension {
-            image: None,
+            image: Some(token_data.priv_img_url.clone()),
             image_data: None,
             external_url: None,
             description: None,
             name: None,
-            attributes: None,
+            attributes: token_data.priv_attributes.clone(),
             background_color: None,
             animation_url: None,
             youtube_url: None,
